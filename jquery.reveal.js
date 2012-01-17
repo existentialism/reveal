@@ -69,7 +69,7 @@
         if (!locked) {
           lockModal();
           if (options.animation == "fadeAndPop") {
-            modalBg.delay(options.animationSpeed).fadeOut(options.animationSpeed);
+            modalBg.delay(options.animationSpeed).fadeOut(options.animationSpeed, function() { modalBG.remove(); });
             modal.animate({
               "top":  $(document).scrollTop() - topOffset + 'px',
               "opacity": 0
@@ -79,7 +79,7 @@
             });
           }
           if (options.animation == "fade") {
-            modalBg.delay(options.animationSpeed).fadeOut(options.animationSpeed);
+            modalBg.delay(options.animationSpeed).fadeOut(options.animationSpeed, function() { modalBG.remove(); });
             modal.animate({
               "opacity" : 0
             }, options.animationSpeed, function () {
@@ -89,7 +89,7 @@
           }
           if (options.animation == "none") {
             modal.css({'visibility': 'hidden', 'top': topMeasure});
-            modalBg.css({'display': 'none'});
+            modalBg.remove();
           }
         }
         modal.unbind('reveal:close', closeAnimation);
